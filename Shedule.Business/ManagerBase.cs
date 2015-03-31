@@ -11,24 +11,10 @@ namespace Shedule.Business
     {
         protected DataContext dataContext;
 
-        private SchoolboyManager schoolboyManager { get; set; }
 
         public ManagerBase(DataContext dataContext)
         {
             this.dataContext = dataContext;
-        }
-
-        public SchoolboyManager SchoolboyManager
-        {
-            get
-            {
-                if (this.schoolboyManager == null)
-                {
-                    this.schoolboyManager = new SchoolboyManager(this.dataContext);
-                }
-
-                return this.schoolboyManager;
-            }
         }
     }
 }

@@ -16,9 +16,16 @@ namespace Shedule.Web.Controllers
             List<Teaching> list = new List<Teaching>();
             using(BusinessContext businessContext = new BusinessContext())
             {
-                list = businessContext.
+                list = businessContext.TeachingManager.All();
             }
             
+
+            return View(list);
+        }
+
+        public ActionResult Get(int teachingId)
+        {
+
 
             return View();
         }

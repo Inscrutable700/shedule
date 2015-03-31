@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Shedule.Business
 {
-    class TeachingManager : ManagerBase
+    public class TeachingManager : ManagerBase
     {
         public TeachingManager(DataContext dataContext)
             : base(dataContext)
@@ -18,6 +18,11 @@ namespace Shedule.Business
         public Teaching Get(int teachingId)
         {
             return this.dataContext.Teachings.SingleOrDefault(t => t.Id == teachingId);
+        }
+
+        public List<Teaching> All()
+        {
+            return this.dataContext.Teachings.ToList();
         }
     }
 }
