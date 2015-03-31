@@ -8,7 +8,7 @@ namespace Shedule.Core.Constants
 {
     public class Pauses
     {
-        private static Dictionary<int, int> pausesInMinute = new Dictionary<int,int>()
+        public static Dictionary<int, int> PausesDict = new Dictionary<int,int>()
         {
             {1, 10},
             {2, 10},
@@ -17,13 +17,5 @@ namespace Shedule.Core.Constants
             {5, 10},
             {6, 10}
         };
-
-        public static Dictionary<int, int> Pauses
-        {
-            get
-            {
-                return pausesInMinute;
-            }
-        }
     }
 }

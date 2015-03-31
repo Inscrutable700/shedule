@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace Shedule.Data.Model
 {
-    class Period
+    public class Period
     {
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
         public int Id { get; set; }
 
-        public long BeginTimeOfDay { get; set; }
+        public TimeSpan BeginTimeOfDay { get; set; }
 
         private long endTimeOfDay = -1;
 
@@ -19,15 +22,15 @@ namespace Shedule.Data.Model
         {
             get 
             {
-                if (this.endTimeOfDay == -1)
-                {
-                    this.endTimeOfDay = this.BeginTimeOfDay;
+                //if (this.endTimeOfDay == -1)
+                //{
+                //    this.endTimeOfDay = this.BeginTimeOfDay;
 
-                    if (Pauses.Pauses.ContainsKey(this.Id))
-                    {
-                        this.endTimeOfDay += Pauses.Pauses[this.Id];
-                    }
-                }
+                //    if (Pauses.Pauses.ContainsKey(this.Id))
+                //    {
+                //        this.endTimeOfDay += Pauses.Pauses[this.Id];
+                //    }
+                //}
 
                 return this.endTimeOfDay;
             }

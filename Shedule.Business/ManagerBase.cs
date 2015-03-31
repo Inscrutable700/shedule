@@ -13,9 +13,9 @@ namespace Shedule.Business
 
         private SchoolboyManager schoolboyManager { get; set; }
 
-        public ManagerBase()
+        public ManagerBase(DataContext dataContext)
         {
-            this.dataContext = new DataContext();
+            this.dataContext = dataContext;
         }
 
         public SchoolboyManager SchoolboyManager

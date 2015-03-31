@@ -2,7 +2,7 @@
 
 namespace Shedule.Data.Model
 {
-    class Teacher
+    public class Teacher
     {
         public int Id { get; set; }
 

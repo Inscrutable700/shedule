@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace Shedule.Business
 {
-    class SchoolboyManager : ManagerBase 
+    public class SchoolboyManager : ManagerBase 
     {
         public SchoolboyManager(DataContext context)
+            : base(context)
         {
-            this.dataContext = context;
         }
 
         public Schoolboy Get(int schoolboyID)

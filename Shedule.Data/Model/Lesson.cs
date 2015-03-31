@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Shedule.Data.Model
 {
@@ -6,16 +7,20 @@ namespace Shedule.Data.Model
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
-
         public List<Schoolboy> Schoolboys { get; set; }
 
-        public int PeriodId { get; set; }
+        public int TeachingID { get; set; }
 
-        public Period Period { get; set; }
+        public Teaching Teaching { get; set; }
+
+        public DateTime Begin { get; set; }
+
+        public int PeriodNumber { get; set; }
 
         public int TeacherID { get; set; }
 
         public Teacher Teacher { get; set; }
+
+        public int Count { get; set; }
     }
 }
