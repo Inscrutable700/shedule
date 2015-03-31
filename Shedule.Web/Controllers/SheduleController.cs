@@ -42,10 +42,5 @@ namespace Shedule.Web.Controllers
             
             return View();
         }
-
-        public ActionResult ListTeaching()
-        {
-            
-        }
     }
 }
