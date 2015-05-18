@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Расписание</h1>
+    <p class="lead">Тут будет информация про школу и что-то еще...</p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Узнать больше &raquo;</a></p>
+    <h2>Расписание на: </h2>
+    <ol>
+        <li>
+            @Html.ActionLink("Понедельник", "SheduleForDay", new { dayNumber = 1 })
+        </li>
+        <li>
+            @Html.ActionLink("Вторник", "SheduleForDay", new { dayNumber = 2 })
+        </li>
+        <li>
+            @Html.ActionLink("Среда", "SheduleForDay", new { dayNumber = 3 })
+        </li>
+        <li>
+            @Html.ActionLink("Четверг", "SheduleForDay", new { dayNumber = 4 })
+        </li>
+        <li>
+            @Html.ActionLink("Пятница", "SheduleForDay", new { dayNumber = 5 })
+        </li>
+    </ol>
+</div>
+

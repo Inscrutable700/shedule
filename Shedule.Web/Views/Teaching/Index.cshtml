@@ -8,7 +8,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить новый предмет", "Create")
 </p>
 <table class="table">
     <tr>
@@ -30,9 +30,15 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { teachingId = item.Id })
+            @Html.ActionLink("Расписание", "SheduleForTeaching", "Shedule", new { teachingId = item.Id }, new object { })
+        </td>
+        <td>
+            @Html.ActionLink("Добавить урок", "Add", "Lesson", new { }, new object { })
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Детали", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Удалить", "Delete", new { teachingId = item.Id })
         </td>
     </tr>
 }

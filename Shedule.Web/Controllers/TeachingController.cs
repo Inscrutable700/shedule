@@ -2,10 +2,7 @@
 using Shedule.Business;
 using Shedule.Data.Model;
 using Shedule.Web.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Shedule.Web.Controllers

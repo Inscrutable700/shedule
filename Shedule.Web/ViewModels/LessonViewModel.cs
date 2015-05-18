@@ -13,10 +13,10 @@ namespace Shedule.Web.ViewModels
 
         public string Name { get; set; }
 
-        public DateTime BeginDate { get; set; }
-
-        public int Count { get; set; }
+        public int DayOfWeekNumber { get; set; }
 
         public int PeriodNumber { get; set; }
+
+        public int ClassroomId { get; set; }
     }
 }

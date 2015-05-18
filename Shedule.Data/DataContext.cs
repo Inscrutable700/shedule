@@ -21,5 +21,7 @@ namespace Shedule.Data
         public DbSet<Classroom> Classrooms { get; set; }
 
         public DbSet<Teaching> Teachings { get; set; }
+
+        public DbSet<Teacher> Teachers { get; set; }
     }
 }

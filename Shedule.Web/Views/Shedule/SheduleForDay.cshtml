@@ -1,0 +1,38 @@
+﻿@model Shedule.Web.ViewModels.SheduleForDayViewModel
+
+@{
+    ViewBag.Title = "SheduleForDay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            <p>День недели: </p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DayName)
+        </dd>
+
+    </dl>
+
+    @foreach (string className in Model.Lessons.Keys)
+    {
+        <div class="col-md-4">
+            <h2>@className</h2>
+            <ol>
+                @foreach (var lesson in Model.Lessons[className])
+                {
+                    <li>
+                        @Html.ActionLink(lesson.Name, "Details", "Lesson", new { id = lesson.Id }, new object { })
+                    </li>
+                }
+            </ol>
+        </div>
+    }
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")*@
+</p>

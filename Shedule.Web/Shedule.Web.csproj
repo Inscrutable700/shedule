@@ -165,7 +165,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClassroomController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LessonController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SchoolboyController.cs" />
     <Compile Include="Controllers\SheduleController.cs" />
@@ -173,14 +175,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DayHelper.cs" />
     <Compile Include="Mappers\Mappers.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\SheduleDayViewModel.cs" />
+    <Compile Include="Models\SheduleForTeachingViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AddLessonViewModel.cs" />
+    <Compile Include="ViewModels\TeachingDetailsViewModel.cs" />
     <Compile Include="ViewModels\SchoolboyViewModel.cs" />
     <Compile Include="ViewModels\LessonViewModel.cs" />
+    <Compile Include="ViewModels\SheduleForDayViewModel.cs" />
     <Compile Include="ViewModels\TeachingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -245,9 +253,19 @@
     <Content Include="Views\Teaching\Get.cshtml" />
     <Content Include="Views\Teaching\Index.cshtml" />
     <Content Include="Views\Teaching\Create.cshtml" />
+    <Content Include="Views\Schoolboy\Index.cshtml" />
+    <Content Include="Views\Classroom\Details.cshtml" />
+    <Content Include="Views\Classroom\Add.cshtml" />
+    <Content Include="Views\Classroom\Index.cshtml" />
+    <Content Include="Views\Shedule\SheduleForTeaching.cshtml" />
+    <Content Include="Views\Lesson\Add.cshtml" />
+    <Content Include="Views\Shedule\Index.cshtml" />
+    <Content Include="Views\Shedule\SheduleForDay.cshtml" />
+    <Content Include="Views\Lesson\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Constants\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

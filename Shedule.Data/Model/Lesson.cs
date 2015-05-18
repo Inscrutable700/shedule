@@ -13,14 +13,16 @@ namespace Shedule.Data.Model
 
         public Teaching Teaching { get; set; }
 
-        public DateTime Begin { get; set; }
-
         public int PeriodNumber { get; set; }
+
+        public int DayNumber { get; set; }
 
         public int TeacherID { get; set; }
 
         public Teacher Teacher { get; set; }
 
-        public int Count { get; set; }
+        public Classroom Classroom { get; set; }
+
+        public int ClassroomId { get; set; }
     }
 }

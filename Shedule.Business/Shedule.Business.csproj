@@ -53,10 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessContext.cs" />
+    <Compile Include="ClassroomManager.cs" />
     <Compile Include="LessonManager.cs" />
     <Compile Include="ManagerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchoolboyManager.cs" />
+    <Compile Include="TeacherManager.cs" />
     <Compile Include="TeachingManager.cs" />
   </ItemGroup>
   <ItemGroup>

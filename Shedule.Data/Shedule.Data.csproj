@@ -61,6 +61,26 @@
     <Compile Include="Migrations\201503312212096_init2.Designer.cs">
       <DependentUpon>201503312212096_init2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504131719300_DoNotNowWhatAdded.cs" />
+    <Compile Include="Migrations\201504131719300_DoNotNowWhatAdded.Designer.cs">
+      <DependentUpon>201504131719300_DoNotNowWhatAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504132052145_AddSoneFieldsForLessonTable.cs" />
+    <Compile Include="Migrations\201504132052145_AddSoneFieldsForLessonTable.Designer.cs">
+      <DependentUpon>201504132052145_AddSoneFieldsForLessonTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504132213114_AddSomeFields.cs" />
+    <Compile Include="Migrations\201504132213114_AddSomeFields.Designer.cs">
+      <DependentUpon>201504132213114_AddSomeFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504132234495_AddSomeFields2.cs" />
+    <Compile Include="Migrations\201504132234495_AddSomeFields2.Designer.cs">
+      <DependentUpon>201504132234495_AddSomeFields2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504140736236_AddSomeFields3.cs" />
+    <Compile Include="Migrations\201504140736236_AddSomeFields3.Designer.cs">
+      <DependentUpon>201504140736236_AddSomeFields3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Classroom.cs" />
     <Compile Include="Model\Lesson.cs" />
@@ -83,6 +103,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503312212096_init2.resx">
       <DependentUpon>201503312212096_init2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504131719300_DoNotNowWhatAdded.resx">
+      <DependentUpon>201504131719300_DoNotNowWhatAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504132052145_AddSoneFieldsForLessonTable.resx">
+      <DependentUpon>201504132052145_AddSoneFieldsForLessonTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504132213114_AddSomeFields.resx">
+      <DependentUpon>201504132213114_AddSomeFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504132234495_AddSomeFields2.resx">
+      <DependentUpon>201504132234495_AddSomeFields2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504140736236_AddSomeFields3.resx">
+      <DependentUpon>201504140736236_AddSomeFields3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

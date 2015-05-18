@@ -18,7 +18,7 @@ namespace Shedule.Business
 
         public Teaching Get(int teachingId)
         {
-            return this.dataContext.Teachings.SingleOrDefault(t => t.Id == teachingId);
+            return this.dataContext.Teachings.Include(t => t.Lessons).SingleOrDefault(t => t.Id == teachingId);
         }
 
         public List<Teaching> All()
@@ -34,9 +34,9 @@ namespace Shedule.Business
             return newTeaching;
         }
 
-        public void Delete(int teachingId)
+        public void Delete(int id)
         {
-            var entity = this.dataContext.Teachings.SingleOrDefault(t => t.Id == teachingId);
+            var entity = this.dataContext.Teachings.SingleOrDefault(t => t.Id == id);
             this.dataContext.Entry(entity).State = EntityState.Deleted;
             this.dataContext.SaveChanges();
         }
