@@ -19,7 +19,7 @@ namespace Shedule.Web.Models
         {
             get
             {
-                return DayHelper.GetDayNameByNumber(this.DayOfWeek);
+                return DateHelper.GetDayNameByNumber(this.DayOfWeek);
             }
         }
 

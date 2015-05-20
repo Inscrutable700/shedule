@@ -175,7 +175,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\DayHelper.cs" />
+    <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Mappers\Mappers.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -185,6 +185,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AddLessonViewModel.cs" />
+    <Compile Include="ViewModels\LessonItemViewModel.cs" />
+    <Compile Include="ViewModels\SheduleForSchoolboy.cs" />
+    <Compile Include="ViewModels\SmallLessonInfoViewModel.cs" />
     <Compile Include="ViewModels\TeachingDetailsViewModel.cs" />
     <Compile Include="ViewModels\SchoolboyViewModel.cs" />
     <Compile Include="ViewModels\LessonViewModel.cs" />
@@ -209,6 +212,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\modules\dropDownHelper.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -262,6 +266,7 @@
     <Content Include="Views\Shedule\Index.cshtml" />
     <Content Include="Views\Shedule\SheduleForDay.cshtml" />
     <Content Include="Views\Lesson\Details.cshtml" />
+    <Content Include="Views\Shedule\SheduleForSchoolboy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

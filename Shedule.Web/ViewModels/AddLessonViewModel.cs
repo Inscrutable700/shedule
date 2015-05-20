@@ -19,7 +19,7 @@ namespace Shedule.Web.ViewModels
 
             for (int i = 1; i < 6; i++)
             {
-                this.Days.Add(new SelectListItem() { Value = i.ToString(), Text = DayHelper.GetDayNameByNumber(i)});
+                this.Days.Add(new SelectListItem() { Value = i.ToString(), Text = DateHelper.GetDayNameByNumber(i)});
             }
 
             for (int i = 1; i < 8; i++)

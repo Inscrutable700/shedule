@@ -43,5 +43,10 @@ namespace Shedule.Business
         {
             return this.dataContext.Lessons.Include(l => l.Classroom).Include(l => l.Teaching).Where(l => l.DayNumber == dayNumber).ToArray();
         }
+
+        public Schoolboy SchoolboyWithLessons(int schoolboyId)
+        {
+            return this.dataContext.Schoolboys.Include(s => s.Lessons).Single(s => s.Id == schoolboyId);
+        }
     }
 }

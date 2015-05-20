@@ -1,5 +1,8 @@
-﻿using Shedule.Business;
+﻿using AutoMapper;
+using Newtonsoft.Json;
+using Shedule.Business;
 using Shedule.Data.Model;
+using Shedule.Web.Helpers;
 using Shedule.Web.Models;
 using Shedule.Web.ViewModels;
 using System;
@@ -12,7 +15,10 @@ namespace Shedule.Web.Controllers
 {
     public class SheduleController : Controller
     {
-        // GET: all shedule
+        public SheduleController()
+        {
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -52,11 +58,11 @@ namespace Shedule.Web.Controllers
                 model.DayOfWeek = dayNumber;
                 foreach(var group in groupedLessons)
                 {
-                    List<SheduleForDayViewModel.LessonViewModel> list = new List<SheduleForDayViewModel.LessonViewModel>();
+                    List<LessonItemViewModel> list = new List<LessonItemViewModel>();
                     
                     foreach (var lesson in group)
                     {
-                        SheduleForDayViewModel.LessonViewModel lessonViewModel = new SheduleForDayViewModel.LessonViewModel()
+                        LessonItemViewModel lessonViewModel = new LessonItemViewModel()
                         {
                             Name = lesson.Teaching.Name,
                             Id = lesson.Id,
@@ -66,6 +72,60 @@ namespace Shedule.Web.Controllers
 
                     model.Lessons.Add(group.Key, list);
                 }
+            }
+
+            return View(model);
+        }
+
+        public ActionResult SheduleForSchoolboy(int schoolboyId)
+        {
+            var model = new SheduleForSchoolboy();
+            using (BusinessContext businessContext = new BusinessContext())
+            {
+                var schoolboy = businessContext.LessonManager.SchoolboyWithLessons(schoolboyId);
+                var groupedLessons = schoolboy.Lessons.GroupBy(l => l.Classroom.Name).ToList();
+                model.FirstName = schoolboy.FirstName;
+                model.LastName = schoolboy.LastName;
+                foreach (var group in groupedLessons)
+                {
+                    List<LessonItemViewModel> list = new List<LessonItemViewModel>();
+
+                    foreach (var lesson in group)
+                    {
+                        LessonItemViewModel lessonViewModel = new LessonItemViewModel()
+                        {
+                            Name = lesson.Teaching.Name,
+                            Id = lesson.Id,
+                        };
+                        list.Add(lessonViewModel);
+                    }
+
+                    model.Lessons.Add(group.Key, list);
+                }
+
+                var teachings = businessContext.TeachingManager.All();
+                foreach (var teaching in teachings)
+                {
+                    var formattedLessons = new List<SmallLessonInfoViewModel>();
+                    foreach (var lesson in teaching.Lessons)
+                    {
+                        formattedLessons.Add(new SmallLessonInfoViewModel()
+                        {
+                            FormattedTimeAndDay = string.Format("{0}, {1} ({2})", 
+                                DateHelper.GetDayNameByNumber(lesson.DayNumber),
+                                DateHelper.GetFormattedTimeByPeriodNumber(lesson.PeriodNumber),
+                                lesson.Classroom.Name),
+                            LessonId = lesson.Id,
+                        });
+                    }
+
+                    model.Teachings.Add(new SelectListItem()
+                    {
+                        Text = teaching.Name,
+                        Value = JsonConvert.SerializeObject(formattedLessons),
+                    });
+                }
+                
             }
 
             return View(model);

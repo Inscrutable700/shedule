@@ -23,7 +23,10 @@ namespace Shedule.Business
 
         public List<Teaching> All()
         {
-            return this.dataContext.Teachings.ToList();
+            return this.dataContext.Teachings
+                .Include(t => t.Lessons)
+                .Include(t => t.Lessons.Select(l => l.Classroom))
+                .ToList();
         }
 
         public Teaching Create(Teaching newTeaching)

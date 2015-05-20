@@ -10,7 +10,7 @@ namespace Shedule.Web.ViewModels
     {
         public SheduleForDayViewModel()
         {
-            this.Lessons = new Dictionary<string, List<LessonViewModel>>();
+            this.Lessons = new Dictionary<string, List<LessonItemViewModel>>();
         }
 
         public int DayOfWeek { get; set; }
@@ -19,17 +19,10 @@ namespace Shedule.Web.ViewModels
         {
             get
             {
-                return DayHelper.GetDayNameByNumber(this.DayOfWeek);
+                return DateHelper.GetDayNameByNumber(this.DayOfWeek);
             }
         }
 
-        public Dictionary<string, List<LessonViewModel>> Lessons { get; set; }
-
-        public class LessonViewModel
-        {
-            public int Id { get; set; }
-
-            public string Name { get; set; }
-        }
+        public Dictionary<string, List<LessonItemViewModel>> Lessons { get; set; }
     }
 }
