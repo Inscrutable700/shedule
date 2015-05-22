@@ -89,5 +89,14 @@ namespace Shedule.Business
             this.dataContext.Entry(entity).State = EntityState.Deleted;
             this.dataContext.SaveChanges();
         }
+
+        public void AddLessonForSchoolboy(int schoolboyId, int lessonId)
+        {
+            Schoolboy schoolboy = this.dataContext.Schoolboys.Include(s => s.Lessons)
+                .Single(s => s.Id == schoolboyId);
+            Lesson lesson = this.dataContext.Lessons.Find(lessonId);
+            schoolboy.Lessons.Add(lesson);
+            this.dataContext.SaveChanges();
+        }
     }
 }

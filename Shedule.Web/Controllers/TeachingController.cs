@@ -9,6 +9,12 @@ namespace Shedule.Web.Controllers
 {
     public class TeachingController : Controller
     {
+        public TeachingController()
+        {
+            Mapper.CreateMap<Lesson, LessonViewModel>();
+            Mapper.CreateMap<Teaching, TeachingViewModel>();
+        }
+
         // GET: Teaching
         /// <summary>
         /// Indexes this instance.
@@ -23,8 +29,22 @@ namespace Shedule.Web.Controllers
                 list = businessContext.TeachingManager.All();
             }
 
-            List<TeachingViewModel> model = Mapper.Map<List<Teaching>, List<TeachingViewModel>>(list);
-            return View(model);
+            List<TeachingViewModel> teachings = new List<TeachingViewModel>();
+            foreach (var teaching in list)
+            {
+                TeachingViewModel model = new TeachingViewModel();
+                model.Id = teaching.Id;
+                model.Name = teaching.Name;
+                model.Price = teaching.Price;
+
+                foreach (var lesson in teaching.Lessons)
+                {
+
+                }
+
+                teachings.Add(model);
+            }
+            return View(teachings);
         }
 
         /// <summary>

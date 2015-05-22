@@ -10,6 +10,7 @@
 <h2>SheduleForSchoolboy</h2>
 
 <div>
+
     <dl class="dl-horizontal">
         <dt>
             <p>Ученик: </p>
@@ -19,10 +20,11 @@
             @Model.FirstName @Model.LastName
         </dd>
     </dl>
-
-    @using (Html.BeginForm())
+    <h1>Добавить урок для пользователя.</h1>
+    @using (Html.BeginForm("AddLesson", "Schoolboy"))
     {
-        <select name="teachings" id="teachings" >
+        <input type="hidden" name="schoolboyId" value="@Model.SchoolboyId"/>
+        <select id="teachings" >
         @foreach (var teaching in Model.Teachings)
         {
             <option value="@teaching.Value">
@@ -30,9 +32,10 @@
             </option>   
         }
         </select>
-        <select id="lessonsDropDown">
-
+        <select id="lessonsDropDown" name="lessonId">
         </select>
+        
+        <input type="submit" value="Добавить"/>
     }
 
     @foreach (string className in Model.Lessons.Keys)

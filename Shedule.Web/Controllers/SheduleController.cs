@@ -86,6 +86,7 @@ namespace Shedule.Web.Controllers
                 var groupedLessons = schoolboy.Lessons.GroupBy(l => l.Classroom.Name).ToList();
                 model.FirstName = schoolboy.FirstName;
                 model.LastName = schoolboy.LastName;
+                model.SchoolboyId = schoolboy.Id;
                 foreach (var group in groupedLessons)
                 {
                     List<LessonItemViewModel> list = new List<LessonItemViewModel>();

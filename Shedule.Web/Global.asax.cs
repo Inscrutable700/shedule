@@ -1,6 +1,8 @@
 ﻿using Shedule.Web.Mappers;
+using Shedule.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,6 +15,7 @@ namespace Shedule.Web
     {
         protected void Application_Start()
         {
+            //Database.SetInitializer<ApplicationDbContext>(new AppDbInitializer());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

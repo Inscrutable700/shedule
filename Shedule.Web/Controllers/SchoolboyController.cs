@@ -2,6 +2,10 @@
 using Shedule.Data.Model;
 using Shedule.Web.ViewModels;
 using System.Web.Mvc;
+using System.Net.Http;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Host.SystemWeb;
 
 namespace Shedule.Web.Controllers
 {
@@ -21,8 +25,9 @@ namespace Shedule.Web.Controllers
         /// Index page.
         /// </summary>
         /// <returns>The index page for schoolboys.</returns>
+        [Authorize]
         public ActionResult Index()
-        { 
+        {
             using (BusinessContext businessContext = new BusinessContext())
             {
                 var schoolBoys = businessContext.SchoolboyManager.AllSchoolboys();
@@ -88,9 +93,15 @@ namespace Shedule.Web.Controllers
             return RedirectToAction("Index", "Schoolboy");
         }
 
-        public ActionResult AddLesson(int SchoolboyId, int lessonId)
+        [HttpPost]
+        public ActionResult AddLesson(int schoolboyId, int lessonId)
         {
-            return RedirectToAction("Index", "");
+            using (BusinessContext businessContext = new BusinessContext())
+            {
+                businessContext.SchoolboyManager.AddLessonForSchoolboy(schoolboyId, lessonId);
+            }
+
+            return RedirectToAction("SheduleForSchoolboy", "Shedule", new { schoolboyId = schoolboyId});
         }
     }
 }
