@@ -17,6 +17,7 @@
                 {
                     <li>
                         @Html.ActionLink(lesson.Name, "Details", "Lesson", new { id = lesson.Id }, new object { })
+                        (@lesson.ClassroomName)
                     </li>
                 }
             </ol>

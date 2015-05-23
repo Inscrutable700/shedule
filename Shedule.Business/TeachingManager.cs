@@ -18,7 +18,9 @@ namespace Shedule.Business
 
         public Teaching Get(int teachingId)
         {
-            return this.dataContext.Teachings.Include(t => t.Lessons).SingleOrDefault(t => t.Id == teachingId);
+            return this.dataContext.Teachings
+                .Include(t => t.Lessons.Select(l => l.Classroom))
+                .SingleOrDefault(t => t.Id == teachingId);
         }
 
         public List<Teaching> All()

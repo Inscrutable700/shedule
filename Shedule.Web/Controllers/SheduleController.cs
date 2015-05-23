@@ -40,6 +40,8 @@ namespace Shedule.Web.Controllers
                     {
                         Id = lesson.Id,
                         Name = lesson.Teaching.Name,
+                        PeriodNumber = lesson.PeriodNumber,
+                        ClassroomName = lesson.Classroom.Name,
                     });
                 }
             }

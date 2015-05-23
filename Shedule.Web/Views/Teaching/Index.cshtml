@@ -36,8 +36,8 @@
             @Html.ActionLink("Добавить урок", "Add", "Lesson", new { }, new object { })
         </td>
         <td>
-            @Html.ActionLink("Редактировать", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Детали", "Details", new { /* id=item.PrimaryKey */ }) |
+            @*@Html.ActionLink("Редактировать", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+            @Html.ActionLink("Детали", "Get", new { teachingId = item.Id }) |
             @Html.ActionLink("Удалить", "Delete", new { teachingId = item.Id })
         </td>
     </tr>
