@@ -85,12 +85,17 @@
     <Compile Include="Migrations\201505230943158_AddSomeFieldsForTeacher.Designer.cs">
       <DependentUpon>201505230943158_AddSomeFieldsForTeacher.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505231057316_AddtariffsTable.cs" />
+    <Compile Include="Migrations\201505231057316_AddtariffsTable.Designer.cs">
+      <DependentUpon>201505231057316_AddtariffsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Classroom.cs" />
     <Compile Include="Model\Lesson.cs" />
     <Compile Include="Model\Period.cs" />
     <Compile Include="Model\Schoolboy.cs" />
     <Compile Include="Model\Subject.cs" />
+    <Compile Include="Model\Tariff.cs" />
     <Compile Include="Model\Teacher.cs" />
     <Compile Include="Model\Teaching.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505230943158_AddSomeFieldsForTeacher.resx">
       <DependentUpon>201505230943158_AddSomeFieldsForTeacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505231057316_AddtariffsTable.resx">
+      <DependentUpon>201505231057316_AddtariffsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

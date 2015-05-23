@@ -14,6 +14,8 @@ namespace Shedule.Data.Model
 
         public float Price { get; set; }
 
+        public List<Tariff> Tariffs { get; set; }
+
         public List<Lesson> Lessons { get; set; }
     }
 }
