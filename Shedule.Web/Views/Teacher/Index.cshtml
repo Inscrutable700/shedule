@@ -1,0 +1,50 @@
+﻿@model Shedule.Web.ViewModels.TeacherListViewModel
+
+@{
+    ViewBag.Title = "Преподаватели";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Добавить учителя", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Имя
+        </th>
+        <th>
+            Фамилия
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Teachers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.ActionLink("Расписание", "SheduleForTeacher", "Shedule", new { teacherId = item.Id }, new object { })
+            </td>
+            <td>
+                @Html.ActionLink("Добавить урок", "Add", "Lesson", new { }, new object { })
+            </td>
+            <td>
+                @*@Html.ActionLink("Редактировать", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                @Html.ActionLink("Детали", "Details", new { teacherId = item.Id }) 
+                @if (this.Context.User.IsInRole("admin"))
+                {
+                    @:| @Html.ActionLink("Удалить", "Delete", new { teacherId = item.Id });
+                }
+            </td>
+        </tr>
+    }
+
+</table>

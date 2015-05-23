@@ -15,9 +15,37 @@ namespace Shedule.Business
         {
         }
 
+        public Teacher Get(int teacherId) 
+        {
+            return this.dataContext.Teachers.Find(teacherId);
+        }
+
         public Teacher[] All()
         {
             return this.dataContext.Teachers.ToArray();
+        }
+
+        public Teacher Add(
+            string firstName,
+            string lastName,
+            string middleName,
+            string description,
+            string deegre,
+            DateTime birthday)
+        {
+            Teacher newTeacher = this.dataContext.Teachers.Add(new Teacher()
+            {
+                FirstName = firstName,
+                LasName = lastName,
+                Degree = deegre,
+                Description = description,
+                MiddleName = middleName,
+                Birthday = birthday,
+            });
+
+            this.dataContext.SaveChanges();
+
+            return newTeacher;
         }
     }
 }

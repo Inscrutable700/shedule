@@ -1,0 +1,72 @@
+﻿@model Shedule.Web.ViewModels.NewTeacherViewModel
+@{
+    ViewBag.Title = "Добавить учителя";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Имя</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                <span class="field-validation-valid text-danger" data-valmsg-for="Введите имя" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Фамилия</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                <span class="field-validation-valid text-danger" data-valmsg-for="Введите фамилию" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Отчество</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                <span class="field-validation-valid text-danger" data-valmsg-for="Введите отчество" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Про учителя</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                <span class="field-validation-valid text-danger" data-valmsg-for="Напишите что про у чителя" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Научная степень</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Degree, new { htmlAttributes = new { @class = "form-control" } })
+                <span class="field-validation-valid text-danger" data-valmsg-for="Укажите научную степень" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">День рождения</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control" } })
+                <span class="field-validation-valid text-danger" data-valmsg-for="Укажите день рождения преподавателя" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Добавить учителя" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Вернуться к списку предметов", "Index")
+</div>

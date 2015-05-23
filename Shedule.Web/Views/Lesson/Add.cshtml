@@ -1,7 +1,7 @@
 ﻿@model Shedule.Web.ViewModels.AddLessonViewModel
 
 @{
-    ViewBag.Title = "Add";
+    ViewBag.Title = "Добавить урок";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using (Html.BeginForm()) 
@@ -9,36 +9,48 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
+        <h2>Форма для добавления урока</h2>
+        <br />
         <div class="form-group">
-            <p>Преподователь: </p>
+            <label class="col-md-2">
+                Преподователь: 
+            </label>
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.Teachers, Model.Teachers, new { Name = "TeacherId" })
             </div>
         </div>
 
         <div class="form-group">
-            <p>Предмет: </p>
+            <label class="col-md-2">
+                Предмет:
+            </label>
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.Teachings, Model.Teachings, new { Name = "TeachingId" })
             </div>
         </div>
 
         <div class="form-group">
-            <p>День недели: </p>
+            <label class="col-md-2">
+                День недели:
+            </label>
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.Days, Model.Days, new { Name = "DayOfWeekNumber"})
             </div>
         </div>
 
         <div class="form-group">
-            <p>Номер урока: </p>
+            <label class="col-md-2">
+                Номер урока:
+            </label>
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.Periods, Model.Periods, new { Name = "PeriodNumber"})
             </div>
         </div>
 
         <div class="form-group">
-            <p>Кабинет: </p>
+            <label class="col-md-2">
+                Кабинет:
+            </label>
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.Classrooms, Model.Classrooms, new { Name = "ClassroomId" })
             </div>
@@ -51,7 +63,3 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

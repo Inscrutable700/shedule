@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-namespace Shedule.Data.Model
+namespace Shedule.Web.ViewModels
 {
-    public class Teacher
+    public class TeacherViewModel
     {
         public int Id { get; set; }
 
@@ -18,7 +20,5 @@ namespace Shedule.Data.Model
         public string Degree { get; set; }
 
         public DateTime Birthday { get; set; }
-
-        public List<Lesson> Lessons { get; set; }
     }
 }

@@ -171,6 +171,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SchoolboyController.cs" />
     <Compile Include="Controllers\SheduleController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\TeachingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -187,8 +188,11 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AddLessonViewModel.cs" />
     <Compile Include="ViewModels\LessonItemViewModel.cs" />
+    <Compile Include="ViewModels\NewTeacherViewModel.cs" />
     <Compile Include="ViewModels\SheduleForSchoolboy.cs" />
     <Compile Include="ViewModels\SmallLessonInfoViewModel.cs" />
+    <Compile Include="ViewModels\TeacherListViewModel.cs" />
+    <Compile Include="ViewModels\TeacherViewModel.cs" />
     <Compile Include="ViewModels\TeachingDetailsViewModel.cs" />
     <Compile Include="ViewModels\SchoolboyViewModel.cs" />
     <Compile Include="ViewModels\LessonViewModel.cs" />
@@ -272,6 +276,9 @@
     <Content Include="Views\Shedule\SheduleForDay.cshtml" />
     <Content Include="Views\Lesson\Details.cshtml" />
     <Content Include="Views\Shedule\SheduleForSchoolboy.cshtml" />
+    <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\Teacher\Create.cshtml" />
+    <Content Include="Views\Teacher\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

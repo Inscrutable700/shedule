@@ -81,6 +81,10 @@
     <Compile Include="Migrations\201504140736236_AddSomeFields3.Designer.cs">
       <DependentUpon>201504140736236_AddSomeFields3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505230943158_AddSomeFieldsForTeacher.cs" />
+    <Compile Include="Migrations\201505230943158_AddSomeFieldsForTeacher.Designer.cs">
+      <DependentUpon>201505230943158_AddSomeFieldsForTeacher.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Classroom.cs" />
     <Compile Include="Model\Lesson.cs" />
@@ -118,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504140736236_AddSomeFields3.resx">
       <DependentUpon>201504140736236_AddSomeFields3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505230943158_AddSomeFieldsForTeacher.resx">
+      <DependentUpon>201505230943158_AddSomeFieldsForTeacher.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
