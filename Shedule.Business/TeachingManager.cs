@@ -20,6 +20,7 @@ namespace Shedule.Business
         {
             return this.dataContext.Teachings
                 .Include(t => t.Lessons.Select(l => l.Classroom))
+                .Include(t => t.Tariffs)
                 .SingleOrDefault(t => t.Id == teachingId);
         }
 
@@ -43,6 +44,26 @@ namespace Shedule.Business
         {
             var entity = this.dataContext.Teachings.SingleOrDefault(t => t.Id == id);
             this.dataContext.Entry(entity).State = EntityState.Deleted;
+            this.dataContext.SaveChanges();
+        }
+
+        public void AddTariff(int teachingId, string title, int countOfPairs, int price)
+        {
+            this.dataContext.Tariffs.Add(new Tariff()
+            {
+                TeachingId = teachingId,
+                Title = title,
+                CountOfPairs = countOfPairs,
+                Price = price,
+            });
+
+            this.dataContext.SaveChanges();
+        }
+
+        public void DeleteTariff(int tariffId)
+        {
+            Tariff tariff = this.dataContext.Tariffs.Find(tariffId);
+            this.dataContext.Entry(tariff).State = EntityState.Deleted;
             this.dataContext.SaveChanges();
         }
     }

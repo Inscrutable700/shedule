@@ -12,6 +12,7 @@ namespace Shedule.Web.Controllers
         public TeachingController()
         {
             Mapper.CreateMap<Lesson, LessonViewModel>();
+            Mapper.CreateMap<Tariff, TeachingViewModel.TariffItemViewModel>();
             Mapper.CreateMap<Teaching, TeachingViewModel>();
         }
 
@@ -59,9 +60,8 @@ namespace Shedule.Web.Controllers
             using (BusinessContext businessContext = new BusinessContext())
             {
                 var teaching = businessContext.TeachingManager.Get(teachingId);
-
                 TeachingViewModel model = Mapper.Map<Teaching, TeachingViewModel>(teaching);
-
+                model.Tariffs = Mapper.Map<List<Tariff>, List<TeachingViewModel.TariffItemViewModel>>(teaching.Tariffs);
                 return View(model);
             }
         }
@@ -92,6 +92,34 @@ namespace Shedule.Web.Controllers
             }
 
             return RedirectToAction("Index", "Teaching");
+        }
+
+        [HttpPost]
+        [Authorize(Roles="admin")]
+        public ActionResult AddTariff(AddTariffViewModel model)
+        {
+            using (BusinessContext businessContext = new BusinessContext())
+            {
+                businessContext.TeachingManager.AddTariff(
+                    model.TeachingId,
+                    model.Title,
+                    model.CountOfPairs,
+                    model.Price);
+            }
+
+            return RedirectToAction("Get", new { teachingId = model.TeachingId});
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public ActionResult DeleteTariff(int tariffId, int teachingId)
+        {
+            using (BusinessContext businessContext = new BusinessContext())
+            {
+                businessContext.TeachingManager.DeleteTariff(tariffId);
+            }
+
+            return RedirectToAction("Get", new { teachingId = teachingId});
         }
     }
 }

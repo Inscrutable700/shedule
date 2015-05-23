@@ -1,18 +1,16 @@
 ﻿@model Shedule.Web.ViewModels.TeachingViewModel
 
 @{
-    ViewBag.Title = "Get";
+    ViewBag.Title = "О предмете";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Get</h2>
-
 <div>
-    <h4>TeachingViewModel</h4>
+    <br />
+    <h4>Информация о предмете</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            <label>Название: </label>
         </dt>
 
         <dd>
@@ -20,16 +18,107 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Price)
+            <label>Цена, грн/урок</label>
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Price)
         </dd>
-
     </dl>
+    <hr />
+    <br />
+    <h4>Тарифы для предмета</h4>
+    <table class="table">
+        <tr>
+            <th>
+                Название тарифа
+            </th>
+            <th>
+                Количество занятий
+            </th>
+            <th>
+                Стоимость, грн
+            </th>
+            @if (this.Context.User.IsInRole("admin"))
+            {
+
+                <th></th>
+            }
+        </tr>
+        @foreach (var tariff in Model.Tariffs)
+        {
+            <tr>
+                <th>
+                    @tariff.Title
+                </th>
+                <th>
+                    @tariff.CountOfPairs
+                </th>
+                <th>
+                    @tariff.Price
+                </th>
+                @if (this.Context.User.IsInRole("admin"))
+                {
+                    <th>
+                        @using (Html.BeginForm("DeleteTariff", "Teaching", FormMethod.Post))
+                        {
+                            <input type="hidden" value="@Model.Id" name="teachingId" />
+                            <input type="hidden" value="@tariff.Id" name="tariffId" />
+                            <input type="submit" value="Удалить" />
+                        }
+                    </th>
+                }
+            </tr>
+        }
+    </table>
+    @if (this.Context.User.IsInRole("admin"))
+    {
+        <hr />
+        <br />
+        <h4>Добавить тариф</h4>
+        using (Html.BeginForm("AddTariff", "Teaching", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <input type="hidden" value="@Model.Id" name="teachingId" />
+                <div class="form-group">
+                    <label class="control-label col-md-2">Название тарифа</label>
+                    <div class="col-md-10">
+                        <input type="text" required name="title" class="form-control" />
+                        <span class="field-validation-valid text-danger" data-valmsg-for="Введите название тарифа" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Количество занятий</label>
+                    <div class="col-md-10">
+                        <input type="number" required name="countOfPairs" class="form-control" />
+                        <span class="field-validation-valid text-danger" data-valmsg-for="Введите количество занятий" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Цена за тариф</label>
+                    <div class="col-md-10">
+                        <input type="number" required name="price" class="form-control" />
+                        <span class="field-validation-valid text-danger" data-valmsg-for="Введите цену за обучение" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Добавить" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    
+
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Вернуться к списку предметов", "Index")
 </p>
