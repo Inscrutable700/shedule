@@ -188,6 +188,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AddLessonViewModel.cs" />
     <Compile Include="ViewModels\AddTariffViewModel.cs" />
+    <Compile Include="ViewModels\ClassroomViewModel.cs" />
     <Compile Include="ViewModels\LessonItemViewModel.cs" />
     <Compile Include="ViewModels\LessonsAndTarifsForTeachingViewModel.cs" />
     <Compile Include="ViewModels\NewTeacherViewModel.cs" />

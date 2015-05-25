@@ -68,5 +68,15 @@ namespace Shedule.Business
         {
             return this.dataContext.Classrooms.ToArray();
         }
+
+        /// <summary>
+        /// Deletes the specified classroom identifier.
+        /// </summary>
+        /// <param name="classroomId">The classroom identifier.</param>
+        public void Delete(int classroomId)
+        {
+            Classroom classroom = this.dataContext.Classrooms.Find(classroomId);
+            this.dataContext.Classrooms.Remove(classroom);
+        }
     }
 }

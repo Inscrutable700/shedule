@@ -39,7 +39,21 @@ namespace Shedule.Web.Controllers
                 var model = businessContext.ClassroomManager.Get(id);
                 return View(model);
             };
+        }
 
+        /// <summary>
+        /// Deletes the specified classroom identifier.
+        /// </summary>
+        /// <param name="classroomId">The classroom identifier.</param>
+        /// <returns></returns>
+        public ActionResult Delete(int classroomId)
+        {
+            using (BusinessContext businessContext = new BusinessContext())
+            {
+                businessContext.ClassroomManager.Delete(classroomId);
+            }
+
+            return View("Index");
         }
 
         public ActionResult Add()
