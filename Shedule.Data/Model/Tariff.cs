@@ -19,5 +19,7 @@ namespace Shedule.Data.Model
         public int CountOfPairs { get; set; }
 
         public int Price { get; set; }
+
+        public List<SchoolboyToTariff> SchoolboyToTariffs { get; set; }
     }
 }

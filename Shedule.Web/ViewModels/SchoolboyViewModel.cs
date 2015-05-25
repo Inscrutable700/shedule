@@ -10,6 +10,13 @@ namespace Shedule.Web.ViewModels
     /// </summary>
     public class SchoolboyViewModel
     {
+        public SchoolboyViewModel()
+        {
+            this.Tariffs = new List<TariffItemViewModel>();
+        }
+
+        public int Id { get; set; }
+
         /// <summary>
         /// Gets or sets the first name.
         /// </summary>
@@ -24,5 +31,20 @@ namespace Shedule.Web.ViewModels
         /// Gets or sets the age.
         /// </summary>
         public int Age { get; set; }
+
+        public List<TariffItemViewModel> Tariffs { get; set; }
+
+        public class TariffItemViewModel
+        {
+            public int Id { get; set; }
+
+            public string Title { get; set; }
+
+            public int CountOfPairs { get; set; }
+
+            public int Price { get; set; }
+
+            public string TeachingName { get; set; }
+        }
     }
 }

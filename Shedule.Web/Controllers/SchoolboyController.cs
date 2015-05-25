@@ -6,6 +6,8 @@ using System.Net.Http;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Host.SystemWeb;
+using AutoMapper;
+using System.Collections.Generic;
 
 namespace Shedule.Web.Controllers
 {
@@ -19,6 +21,8 @@ namespace Shedule.Web.Controllers
         /// </summary>
         public SchoolboyController()
         {
+            Mapper.CreateMap<Tariff, SchoolboyViewModel.TariffItemViewModel>()
+                .ForMember(dest => dest.TeachingName, ost => ost.MapFrom(src => src.Teaching.Name));
         }
 
         /// <summary>
@@ -43,7 +47,31 @@ namespace Shedule.Web.Controllers
         /// <returns></returns>
         public ActionResult Details(int id)
         {
-            SchoolboyViewModel model = new SchoolboyViewModel();
+            SchoolboyViewModel model = null;
+
+            using (BusinessContext businessContext = new BusinessContext())
+            {
+                Schoolboy schoolboy = businessContext.SchoolboyManager.Get(id);
+                model = new SchoolboyViewModel()
+                {
+                    Id = schoolboy.Id,
+                    Age = schoolboy.Age,
+                    FirstName = schoolboy.FirstName,
+                    LastName = schoolboy.LastName,
+                };
+
+                foreach (var schoolboyToTariff in schoolboy.SchoolboyToTariffs)
+                {
+                    model.Tariffs.Add(new SchoolboyViewModel.TariffItemViewModel()
+                    {
+                        Id = schoolboyToTariff.Tariff.Id,
+                        CountOfPairs = schoolboyToTariff.Tariff.CountOfPairs,
+                        Price = schoolboyToTariff.Tariff.Price,
+                        TeachingName = schoolboyToTariff.Tariff.Teaching.Name,
+                        Title = schoolboyToTariff.Tariff.Title,
+                    });
+                }
+            }
 
             return View(model);
         }
@@ -94,14 +122,24 @@ namespace Shedule.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddLesson(int schoolboyId, int lessonId)
+        public ActionResult AddLesson(int schoolboyId, int lessonId, int tariffId)
         {
             using (BusinessContext businessContext = new BusinessContext())
             {
-                businessContext.SchoolboyManager.AddLessonForSchoolboy(schoolboyId, lessonId);
+                businessContext.SchoolboyManager.AddTariffForSchoolboy(schoolboyId, tariffId, lessonId);
             }
 
             return RedirectToAction("SheduleForSchoolboy", "Shedule", new { schoolboyId = schoolboyId});
+        }
+
+        public ActionResult DeleteTariff(int schoolboyId, int tariffId)
+        {
+            using (BusinessContext businessContext = new BusinessContext())
+            {
+                businessContext.SchoolboyManager.DeleteTariff(schoolboyId, tariffId);
+            }
+
+            return RedirectToAction("Details", new { id = schoolboyId});
         }
     }
 }

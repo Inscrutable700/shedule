@@ -13,11 +13,16 @@
         <div class="col-md-4">
             <h2>@day.Name</h2>
             <ol>
-                @foreach (var lesson in day.Lessons)
+                @for (int i = 1; i <= 8; i++)
                 {
+                    var lessonsForPeriod = day.Lessons.Where(l => l.PeriodNumber == i);
                     <li>
-                        @Html.ActionLink(lesson.Name, "Details", "Lesson", new { id = lesson.Id }, new object { })
-                        (@lesson.ClassroomName)
+                        @foreach (var lesson in lessonsForPeriod)
+                        {
+                            @:- @(Html.ActionLink(lesson.TeacherName, "Details", "Lesson", new { id = lesson.Id }, new object { }))
+                            <text>, каб. @lesson.ClassroomName </text> 
+                            <br />
+                        }
                     </li>
                 }
             </ol>

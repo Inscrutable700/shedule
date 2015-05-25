@@ -16,6 +16,6 @@ namespace Shedule.Data.Model
 
         public int Age { get; set; }
 
-        public List<Lesson> Lessons { get; set; }
+        public List<SchoolboyToTariff> SchoolboyToTariffs { get; set; }
     }
 }

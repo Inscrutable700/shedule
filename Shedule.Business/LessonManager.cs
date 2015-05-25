@@ -47,10 +47,12 @@ namespace Shedule.Business
         public Schoolboy SchoolboyWithLessons(int schoolboyId)
         {
             return this.dataContext.Schoolboys
-                .Include(s => s.Lessons
-                    .Select(l => l.Classroom))
-                .Include(s => s.Lessons
-                    .Select(l => l.Teaching))
+                .Include(s => s.SchoolboyToTariffs
+                    .Select(st => st.Lesson))
+                .Include(s => s.SchoolboyToTariffs
+                    .Select(st => st.Lesson.Teaching))
+                .Include(s => s.SchoolboyToTariffs
+                    .Select(st => st.Lesson.Classroom))
                 .Single(s => s.Id == schoolboyId);
         }
     }

@@ -89,11 +89,20 @@
     <Compile Include="Migrations\201505231057316_AddtariffsTable.Designer.cs">
       <DependentUpon>201505231057316_AddtariffsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505231207267_AddRelashinShipForSchoolboysAndTariffs.cs" />
+    <Compile Include="Migrations\201505231207267_AddRelashinShipForSchoolboysAndTariffs.Designer.cs">
+      <DependentUpon>201505231207267_AddRelashinShipForSchoolboysAndTariffs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505250927534_Test.cs" />
+    <Compile Include="Migrations\201505250927534_Test.Designer.cs">
+      <DependentUpon>201505250927534_Test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Classroom.cs" />
     <Compile Include="Model\Lesson.cs" />
     <Compile Include="Model\Period.cs" />
     <Compile Include="Model\Schoolboy.cs" />
+    <Compile Include="Model\SchoolboyToTariff.cs" />
     <Compile Include="Model\Subject.cs" />
     <Compile Include="Model\Tariff.cs" />
     <Compile Include="Model\Teacher.cs" />
@@ -133,6 +142,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505231057316_AddtariffsTable.resx">
       <DependentUpon>201505231057316_AddtariffsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505231207267_AddRelashinShipForSchoolboysAndTariffs.resx">
+      <DependentUpon>201505231207267_AddRelashinShipForSchoolboysAndTariffs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505250927534_Test.resx">
+      <DependentUpon>201505250927534_Test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

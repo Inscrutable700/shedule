@@ -27,7 +27,10 @@ namespace Shedule.Business
         /// <returns>The schoolboy.</returns>
         public Schoolboy Get(int schoolboyID)
         {
-            Schoolboy schoolboy = this.dataContext.Schoolboys.Find(schoolboyID);
+            Schoolboy schoolboy = this.dataContext.Schoolboys
+                .Include(s => s.SchoolboyToTariffs.Select(t => t.Lesson.Teaching))
+                .Include(s => s.SchoolboyToTariffs.Select(st => st.Tariff))
+                .Single(s => s.Id == schoolboyID);
 
             return schoolboy;
         }
@@ -37,10 +40,12 @@ namespace Shedule.Business
         /// </summary>
         /// <param name="LessonID">The lesson identifier.</param>
         /// <returns>The list of scoolboys by Lesson.</returns>
-        public Schoolboy[] List(int LessonID)
+        public Schoolboy[] List(int lessonID)
         {
-            var lesson = this.dataContext.Lessons.Find(LessonID);
-            return lesson.Schoolboys.ToArray();
+            return this.dataContext.SchoolboyToTariffs
+                .Where(st => st.LessonId == lessonID)
+                .Select(st => st.Schoolboy)
+                .ToArray();
         }
 
         /// <summary>
@@ -73,8 +78,8 @@ namespace Shedule.Business
         public Schoolboy Add(Schoolboy schoolboy, List<Lesson> lessons)
         {
             schoolboy = this.dataContext.Schoolboys.Add(schoolboy);
-            schoolboy.Lessons.AddRange(lessons);
-            this.dataContext.SaveChanges();
+            /*schoolboy.Lessons.AddRange(lessons);
+            this.dataContext.SaveChanges();*/
 
             return schoolboy;
         }
@@ -90,12 +95,32 @@ namespace Shedule.Business
             this.dataContext.SaveChanges();
         }
 
-        public void AddLessonForSchoolboy(int schoolboyId, int lessonId)
+        //public void AddLessonForSchoolboy(int schoolboyId, int lessonId)
+        //{
+        //    Schoolboy schoolboy = this.dataContext.Schoolboys.Include(s => s.Lessons)
+        //        .Single(s => s.Id == schoolboyId);
+        //    Lesson lesson = this.dataContext.Lessons.Find(lessonId);
+        //    schoolboy.Lessons.Add(lesson);
+        //    this.dataContext.SaveChanges();
+        //}
+
+        public void AddTariffForSchoolboy(int schoolboyId, int tariffId, int lessonId)
         {
-            Schoolboy schoolboy = this.dataContext.Schoolboys.Include(s => s.Lessons)
-                .Single(s => s.Id == schoolboyId);
-            Lesson lesson = this.dataContext.Lessons.Find(lessonId);
-            schoolboy.Lessons.Add(lesson);
+            this.dataContext.SchoolboyToTariffs.Add(new SchoolboyToTariff()
+            {
+                LessonId = lessonId,
+                SchoolboyId = schoolboyId,
+                TariffId = tariffId,
+            });
+            this.dataContext.SaveChanges();
+        }
+
+        public void DeleteTariff(int schoolboyId, int tariffId)
+        {
+            SchoolboyToTariff schoolboyToTariff = this.dataContext.SchoolboyToTariffs
+                .Single(st => st.SchoolboyId == schoolboyId && st.TariffId == tariffId);
+
+            this.dataContext.SchoolboyToTariffs.Remove(schoolboyToTariff);
             this.dataContext.SaveChanges();
         }
     }

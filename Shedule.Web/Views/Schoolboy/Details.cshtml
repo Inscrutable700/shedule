@@ -1,0 +1,83 @@
+﻿@model Shedule.Web.ViewModels.SchoolboyViewModel
+@{
+    ViewBag.Title = "Ученик";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <br />
+    <h4>Информация</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Имя: </label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            <label>Фамилия: </label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            <label>Дата рождения</label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+    </dl>
+    <hr />
+    <br />
+    <h4>Тарифы для ученика</h4>
+    <table class="table">
+        <tr>
+            <th>
+                Название тарифа
+            </th>
+            <th>
+                Количество занятий
+            </th>
+            <th>
+                Стоимость, грн
+            </th>
+            @if (this.Context.User.IsInRole("admin"))
+            {
+
+                <th></th>
+            }
+        </tr>
+        @foreach (var tariff in Model.Tariffs)
+        {
+            <tr>
+                <th>
+                    @tariff.Title
+                </th>
+                <th>
+                    @tariff.CountOfPairs
+                </th>
+                <th>
+                    @tariff.Price
+                </th>
+                @if (this.Context.User.IsInRole("admin"))
+                {
+                    <th>
+                        @using (Html.BeginForm("DeleteTariff", "Schoolboy", FormMethod.Post))
+                        {
+                            <input type="hidden" value="@Model.Id" name="schoolboyId" />
+                            <input type="hidden" value="@tariff.Id" name="tariffId" />
+                            <input type="submit" value="Удалить" />
+                        }
+                    </th>
+                }
+            </tr>
+        }
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Вернуться к списку учеников", "Index", "Schoolboy")
+</p>

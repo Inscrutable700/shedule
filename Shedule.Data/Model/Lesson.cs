@@ -7,8 +7,6 @@ namespace Shedule.Data.Model
     {
         public int Id { get; set; }
 
-        public List<Schoolboy> Schoolboys { get; set; }
-
         public int TeachingID { get; set; }
 
         public Teaching Teaching { get; set; }

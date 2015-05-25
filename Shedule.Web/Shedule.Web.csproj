@@ -189,9 +189,9 @@
     <Compile Include="ViewModels\AddLessonViewModel.cs" />
     <Compile Include="ViewModels\AddTariffViewModel.cs" />
     <Compile Include="ViewModels\LessonItemViewModel.cs" />
+    <Compile Include="ViewModels\LessonsAndTarifsForTeachingViewModel.cs" />
     <Compile Include="ViewModels\NewTeacherViewModel.cs" />
     <Compile Include="ViewModels\SheduleForSchoolboy.cs" />
-    <Compile Include="ViewModels\SmallLessonInfoViewModel.cs" />
     <Compile Include="ViewModels\TeacherListViewModel.cs" />
     <Compile Include="ViewModels\TeacherViewModel.cs" />
     <Compile Include="ViewModels\TeachingDetailsViewModel.cs" />
@@ -280,6 +280,7 @@
     <Content Include="Views\Teacher\Index.cshtml" />
     <Content Include="Views\Teacher\Create.cshtml" />
     <Content Include="Views\Teacher\Details.cshtml" />
+    <Content Include="Views\Schoolboy\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

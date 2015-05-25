@@ -29,6 +29,7 @@ namespace Shedule.Business
             return this.dataContext.Teachings
                 .Include(t => t.Lessons)
                 .Include(t => t.Lessons.Select(l => l.Classroom))
+                .Include(t => t.Tariffs)
                 .ToList();
         }
 

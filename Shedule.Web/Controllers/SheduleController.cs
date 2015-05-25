@@ -42,6 +42,7 @@ namespace Shedule.Web.Controllers
                         Name = lesson.Teaching.Name,
                         PeriodNumber = lesson.PeriodNumber,
                         ClassroomName = lesson.Classroom.Name,
+                        TeacherName = string.Format("{0} {1}", lesson.Teacher.FirstName, lesson.Teacher.LasName)
                     });
                 }
             }
@@ -85,7 +86,7 @@ namespace Shedule.Web.Controllers
             using (BusinessContext businessContext = new BusinessContext())
             {
                 var schoolboy = businessContext.LessonManager.SchoolboyWithLessons(schoolboyId);
-                var groupedLessons = schoolboy.Lessons.GroupBy(l => l.Classroom.Name).ToList();
+                var groupedLessons = schoolboy.SchoolboyToTariffs.Select(st => st.Lesson).GroupBy(l => l.Classroom.Name).ToList();
                 model.FirstName = schoolboy.FirstName;
                 model.LastName = schoolboy.LastName;
                 model.SchoolboyId = schoolboy.Id;
@@ -109,10 +110,10 @@ namespace Shedule.Web.Controllers
                 var teachings = businessContext.TeachingManager.All();
                 foreach (var teaching in teachings)
                 {
-                    var formattedLessons = new List<SmallLessonInfoViewModel>();
+                    var modelForTeaching = new LessonsAndTarifsForTeachingViewModel();
                     foreach (var lesson in teaching.Lessons)
                     {
-                        formattedLessons.Add(new SmallLessonInfoViewModel()
+                        modelForTeaching.Lessons.Add(new LessonsAndTarifsForTeachingViewModel.LessonItemViewModel()
                         {
                             FormattedTimeAndDay = string.Format("{0}, {1} ({2})", 
                                 DateHelper.GetDayNameByNumber(lesson.DayNumber),
@@ -122,10 +123,19 @@ namespace Shedule.Web.Controllers
                         });
                     }
 
+                    foreach (var tariff in teaching.Tariffs)
+                    {
+                        modelForTeaching.Tariffs.Add(new LessonsAndTarifsForTeachingViewModel.TariffItemViewModel()
+                        {
+                            TariffId = tariff.Id,
+                            FormattedInfo = string.Format("{0}, {1} занятий/{2} грн", tariff.Title, tariff.CountOfPairs, tariff.Price),
+                        });
+                    }
+
                     model.Teachings.Add(new SelectListItem()
                     {
                         Text = teaching.Name,
-                        Value = JsonConvert.SerializeObject(formattedLessons),
+                        Value = JsonConvert.SerializeObject(modelForTeaching),
                     });
                 }
                 
