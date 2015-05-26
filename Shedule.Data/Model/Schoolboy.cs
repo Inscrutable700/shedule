@@ -16,6 +16,14 @@ namespace Shedule.Data.Model
 
         public int Age { get; set; }
 
+        public DateTime Birthday { get; set; }
+
+        public string Adress { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public string Email { get; set; }
+
         public List<SchoolboyToTariff> SchoolboyToTariffs { get; set; }
     }
 }

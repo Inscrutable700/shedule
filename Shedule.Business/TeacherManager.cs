@@ -1,5 +1,6 @@
 ﻿using Shedule.Data;
 using Shedule.Data.Model;
+using System.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,11 @@ namespace Shedule.Business
 
         public Teacher Get(int teacherId) 
         {
-            return this.dataContext.Teachers.Find(teacherId);
+            return this.dataContext.Teachers
+                .Include(t => t.Lessons.Select(l => l.Teacher))
+                .Include(t => t.Lessons.Select(l => l.Teaching))
+                .Include(t => t.Lessons.Select(l => l.Classroom))
+                .Single(t => t.Id == teacherId);
         }
 
         public Teacher[] All()
@@ -46,6 +51,14 @@ namespace Shedule.Business
             this.dataContext.SaveChanges();
 
             return newTeacher;
+        }
+
+        public void AddLesson(int teacherId, int lessonId)
+        {
+            Teacher teacher = this.dataContext.Teachers.Find(teacherId);
+            Lesson lesson = this.dataContext.Lessons.Find(lessonId);
+            teacher.Lessons.Add(lesson);
+            this.dataContext.SaveChanges();
         }
     }
 }

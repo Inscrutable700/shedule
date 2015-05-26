@@ -32,11 +32,7 @@
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
-                @if(this.Context.User.IsInRole("admin"))
-                {
-                    @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) @:|
-                }
-                @Html.ActionLink("Просмотреть", "Details", new { id = item.Id }) 
+                @Html.ActionLink("Детальная информация", "Details", new { id = item.Id }) 
                 @if(this.Context.User.IsInRole("admin"))
                 {
                     @:| @Html.ActionLink("Удалить", "Delete", new { id = item.Id })

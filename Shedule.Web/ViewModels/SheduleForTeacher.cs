@@ -7,9 +7,9 @@ using System.Web.Mvc;
 
 namespace Shedule.Web.ViewModels
 {
-    public class SheduleForSchoolboy
+    public class SheduleForTeacher
     {
-        public SheduleForSchoolboy()
+        public SheduleForTeacher()
         {
             this.Lessons = new Dictionary<string, List<LessonItemViewModel>>();
             this.Teachings = new List<SelectListItem>();
@@ -20,7 +20,7 @@ namespace Shedule.Web.ViewModels
             }
         }
 
-        public int SchoolboyId { get; set; }
+        public int TeacherId { get; set; }
 
         public string FirstName { get; set; }
 

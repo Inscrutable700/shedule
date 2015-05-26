@@ -36,6 +36,8 @@ namespace Shedule.Web.Models
             public int PeriodNumber { get; set; }
 
             public string TeacherName { get; set; }
+
+            public int TeachingId { get; set; }
         }
     }
 }

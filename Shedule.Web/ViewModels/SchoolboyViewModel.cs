@@ -32,6 +32,14 @@ namespace Shedule.Web.ViewModels
         /// </summary>
         public int Age { get; set; }
 
+        public DateTime Birthday { get; set; }
+
+        public string Adress { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public string Email { get; set; }
+
         public List<TariffItemViewModel> Tariffs { get; set; }
 
         public class TariffItemViewModel

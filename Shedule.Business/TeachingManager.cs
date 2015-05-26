@@ -21,6 +21,7 @@ namespace Shedule.Business
             return this.dataContext.Teachings
                 .Include(t => t.Lessons.Select(l => l.Classroom))
                 .Include(t => t.Tariffs)
+                .Include(t => t.Lessons.Select(l => l.Teacher))
                 .SingleOrDefault(t => t.Id == teachingId);
         }
 

@@ -1,18 +1,17 @@
 ﻿@model Shedule.Web.ViewModels.TeacherViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "информация о преподавателе";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
 <div>
+    <br />
     <h4>Информация о преподавате</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            <label>Имя</label>
         </dt>
 
         <dd>
@@ -20,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LasName)
+            <label>Фамилия</label>
         </dt>
 
         <dd>
@@ -28,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MiddleName)
+            <label>Отчество</label>
         </dt>
 
         <dd>
@@ -36,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            <label>О преподавателе</label>
         </dt>
 
         <dd>
@@ -44,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Degree)
+            <label>научная степень</label>
         </dt>
 
         <dd>
@@ -52,7 +51,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Birthday)
+            <label>День рождения</label>
         </dt>
 
         <dd>
@@ -62,6 +61,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Вернуться к списку", "Index")
 </p>

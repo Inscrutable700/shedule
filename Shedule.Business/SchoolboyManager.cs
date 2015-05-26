@@ -106,13 +106,22 @@ namespace Shedule.Business
 
         public void AddTariffForSchoolboy(int schoolboyId, int tariffId, int lessonId)
         {
-            this.dataContext.SchoolboyToTariffs.Add(new SchoolboyToTariff()
+            var allTariffs = this.dataContext.SchoolboyToTariffs.Where(st => st.SchoolboyId == schoolboyId);
+
+            Lesson lesson = this.dataContext.Lessons.Find(lessonId);
+
+            bool result = allTariffs.Any(t => t.Lesson.DayNumber == lesson.DayNumber && t.Lesson.PeriodNumber == lesson.PeriodNumber);
+
+            if (!result)
             {
-                LessonId = lessonId,
-                SchoolboyId = schoolboyId,
-                TariffId = tariffId,
-            });
-            this.dataContext.SaveChanges();
+                this.dataContext.SchoolboyToTariffs.Add(new SchoolboyToTariff()
+                {
+                    LessonId = lessonId,
+                    SchoolboyId = schoolboyId,
+                    TariffId = tariffId,
+                });
+                this.dataContext.SaveChanges();
+            }
         }
 
         public void DeleteTariff(int schoolboyId, int tariffId)

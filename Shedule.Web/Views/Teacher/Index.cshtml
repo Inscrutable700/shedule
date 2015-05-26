@@ -4,12 +4,11 @@
     ViewBag.Title = "Преподаватели";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
-
+<br />
 <p>
     @Html.ActionLink("Добавить учителя", "Create")
 </p>
+<br />
 <table class="table">
     <tr>
         <th>
@@ -40,7 +39,7 @@
             </td>
             <td>
                 @*@Html.ActionLink("Редактировать", "Edit", new { /* id=item.PrimaryKey */ }) |*@
-                @Html.ActionLink("Детали", "Details", new { teacherId = item.Id }) 
+                @Html.ActionLink("Детальная информация", "Details", new { teacherId = item.Id }) 
                 @if (this.Context.User.IsInRole("admin"))
                 {
                     @:| @Html.ActionLink("Удалить", "Delete", new { teacherId = item.Id });

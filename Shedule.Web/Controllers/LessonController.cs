@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 namespace Shedule.Web.Controllers
 {
+    [Authorize]
     public class LessonController : Controller
     {
         public LessonController()

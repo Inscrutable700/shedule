@@ -25,10 +25,28 @@
         </dd>
 
         <dt>
-            <label>Дата рождения</label>
+            <label>Дата рождения: </label>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Age)
+            @Html.DisplayFor(model => model.Birthday)
+        </dd>
+        <dt>
+            <label>Адрес: </label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Adress)
+        </dd>
+        <dt>
+            <label>Номер телефона: </label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt>
+            <label>E-Mail: </label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
         </dd>
     </dl>
     <hr />
@@ -38,6 +56,9 @@
         <tr>
             <th>
                 Название тарифа
+            </th>
+            <th>
+                Название предмета 
             </th>
             <th>
                 Количество занятий
@@ -56,6 +77,9 @@
             <tr>
                 <th>
                     @tariff.Title
+                </th>
+                <th>
+                    @tariff.TeachingName
                 </th>
                 <th>
                     @tariff.CountOfPairs

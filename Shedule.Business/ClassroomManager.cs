@@ -77,6 +77,7 @@ namespace Shedule.Business
         {
             Classroom classroom = this.dataContext.Classrooms.Find(classroomId);
             this.dataContext.Classrooms.Remove(classroom);
+            this.dataContext.SaveChanges();
         }
     }
 }

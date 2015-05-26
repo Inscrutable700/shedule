@@ -13,6 +13,7 @@ using System.Web.Mvc;
 
 namespace Shedule.Web.Controllers
 {
+    [Authorize]
     public class SheduleController : Controller
     {
         public SheduleController()
@@ -86,25 +87,21 @@ namespace Shedule.Web.Controllers
             using (BusinessContext businessContext = new BusinessContext())
             {
                 var schoolboy = businessContext.LessonManager.SchoolboyWithLessons(schoolboyId);
-                var groupedLessons = schoolboy.SchoolboyToTariffs.Select(st => st.Lesson).GroupBy(l => l.Classroom.Name).ToList();
+                var lessons = schoolboy.SchoolboyToTariffs.Select(st => st.Lesson).ToList();
                 model.FirstName = schoolboy.FirstName;
                 model.LastName = schoolboy.LastName;
                 model.SchoolboyId = schoolboy.Id;
-                foreach (var group in groupedLessons)
+                foreach (var lesson in lessons)
                 {
-                    List<LessonItemViewModel> list = new List<LessonItemViewModel>();
-
-                    foreach (var lesson in group)
+                    model.Days[lesson.DayNumber].Lessons.Add(new SheduleDayViewModel.LessonViewModel()
                     {
-                        LessonItemViewModel lessonViewModel = new LessonItemViewModel()
-                        {
-                            Name = lesson.Teaching.Name,
-                            Id = lesson.Id,
-                        };
-                        list.Add(lessonViewModel);
-                    }
-
-                    model.Lessons.Add(group.Key, list);
+                        Id = lesson.Id,
+                        Name = lesson.Teaching.Name,
+                        PeriodNumber = lesson.PeriodNumber,
+                        ClassroomName = lesson.Classroom.Name,
+                        TeacherName = string.Format("{0} {1}", lesson.Teacher.FirstName, lesson.Teacher.LasName),
+                        TeachingId = lesson.Teacher.Id,
+                    });
                 }
 
                 var teachings = businessContext.TeachingManager.All();
@@ -139,6 +136,57 @@ namespace Shedule.Web.Controllers
                     });
                 }
                 
+            }
+
+            return View(model);
+        }
+
+        public ActionResult SheduleForTeacher(int teacherId)
+        {
+            var model = new SheduleForTeacher();
+            using (BusinessContext businessContext = new BusinessContext())
+            {
+                var teacher = businessContext.TeacherManager.Get(teacherId);
+                
+                model.FirstName = teacher.FirstName;
+                model.LastName = teacher.LasName;
+                model.TeacherId = teacher.Id;
+                foreach (var lesson in teacher.Lessons)
+                {
+                    model.Days[lesson.DayNumber].Lessons.Add(new SheduleDayViewModel.LessonViewModel()
+                    {
+                        Id = lesson.Id,
+                        Name = lesson.Teaching.Name,
+                        PeriodNumber = lesson.PeriodNumber,
+                        ClassroomName = lesson.Classroom.Name,
+                        TeacherName = string.Format("{0} {1}", lesson.Teacher.FirstName, lesson.Teacher.LasName),
+                        TeachingId = lesson.Teacher.Id,
+                    });
+                }
+
+                var teachings = businessContext.TeachingManager.All();
+                foreach (var teaching in teachings)
+                {
+                    var modelForTeaching = new LessonsAndTarifsForTeachingViewModel();
+                    foreach (var lesson in teaching.Lessons)
+                    {
+                        modelForTeaching.Lessons.Add(new LessonsAndTarifsForTeachingViewModel.LessonItemViewModel()
+                        {
+                            FormattedTimeAndDay = string.Format("{0}, {1} ({2})",
+                                DateHelper.GetDayNameByNumber(lesson.DayNumber),
+                                DateHelper.GetFormattedTimeByPeriodNumber(lesson.PeriodNumber),
+                                lesson.Classroom.Name),
+                            LessonId = lesson.Id,
+                        });
+                    }
+
+                    model.Teachings.Add(new SelectListItem()
+                    {
+                        Text = teaching.Name,
+                        Value = JsonConvert.SerializeObject(modelForTeaching),
+                    });
+                }
+
             }
 
             return View(model);

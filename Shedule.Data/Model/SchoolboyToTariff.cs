@@ -15,11 +15,11 @@ namespace Shedule.Data.Model
 
         public Schoolboy Schoolboy { get; set; }
 
-        [Key, Column(Order = 2)]
         public int TariffId { get; set; }
 
         public Tariff Tariff { get; set; }
 
+        [Key, Column(Order = 2)]
         public int LessonId { get; set; }
 
         public Lesson Lesson { get; set; }

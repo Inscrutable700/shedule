@@ -53,6 +53,8 @@ namespace Shedule.Business
                     .Select(st => st.Lesson.Teaching))
                 .Include(s => s.SchoolboyToTariffs
                     .Select(st => st.Lesson.Classroom))
+                .Include(s => s.SchoolboyToTariffs
+                    .Select(st => st.Lesson.Teacher))
                 .Single(s => s.Id == schoolboyId);
         }
     }

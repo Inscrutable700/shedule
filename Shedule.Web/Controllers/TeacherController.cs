@@ -76,5 +76,15 @@ namespace Shedule.Web.Controllers
 
             return View(model);
         }
+
+        public ActionResult AddLesson(int teacherId, int lessonId)
+        {
+            using (BusinessContext businessContext = new BusinessContext())
+            {
+                businessContext.TeacherManager.AddLesson(teacherId, lessonId);
+            }
+
+            return RedirectToAction("Details", new { teacherId = teacherId});
+        }
     }
 }

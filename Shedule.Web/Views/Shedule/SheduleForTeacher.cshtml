@@ -1,0 +1,39 @@
+﻿@model Shedule.Web.ViewModels.SheduleForTeacher
+@{
+    ViewBag.Title = "Расписание для преподавателя";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts{
+    <script src="~/Scripts/modules/dropDownHelper.js" type="text/javascript"></script>
+}
+
+<div>
+    <h3>Расписание для преподавателя: <label>@Model.FirstName @Model.LastName</label></h3>
+
+    <div class="row">
+        @foreach (var day in Model.Days.Values)
+        {
+            <div class="col-md-4">
+                <h4>@day.Name</h4>
+                <ol>
+                    @for (int i = 1; i <= 8; i++)
+                    {
+                        var lessonsForPeriod = day.Lessons.Where(l => l.PeriodNumber == i);
+                        <li>
+                            @foreach (var lesson in lessonsForPeriod)
+                            {
+                                @:- @(Html.ActionLink(lesson.Name, "Get", "Teaching", new { teachingId = lesson.TeachingId }, new object { }))
+                                <text>, каб. @lesson.ClassroomName </text>
+                                <br />
+                            }
+                        </li>
+                    }
+                </ol>
+            </div>
+        }
+    </div>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")*@
+</p>

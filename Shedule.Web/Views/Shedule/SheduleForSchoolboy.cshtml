@@ -1,26 +1,14 @@
 ﻿@model Shedule.Web.ViewModels.SheduleForSchoolboy
 @{
-    ViewBag.Title = "SheduleForSchoolboy";
+    ViewBag.Title = "Расписание для ученика";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section scripts{
     <script src="~/Scripts/modules/dropDownHelper.js" type="text/javascript"></script>
 }
 
-<h2>SheduleForSchoolboy</h2>
-
 <div>
-
-    <dl class="dl-horizontal">
-        <dt>
-            <p>Ученик: </p>
-        </dt>
-
-        <dd>
-            @Model.FirstName @Model.LastName
-        </dd>
-    </dl>
-    <h1>Добавить урок для пользователя.</h1>
+    <h3>Добавить урок.</h3>
     @using (Html.BeginForm("AddLesson", "Schoolboy"))
     {
         <input type="hidden" name="schoolboyId" value="@Model.SchoolboyId"/>
@@ -51,6 +39,31 @@
             </ol>
         </div>
     }
+
+    <h3>Расписание для ученика: <label>@Model.FirstName @Model.LastName</label></h3>
+
+    <div class="row">
+        @foreach (var day in Model.Days.Values)
+        {
+            <div class="col-md-4">
+                <h4>@day.Name</h4>
+                <ol>
+                    @for (int i = 1; i <= 8; i++)
+                    {
+                        var lessonsForPeriod = day.Lessons.Where(l => l.PeriodNumber == i);
+                        <li>
+                            @foreach (var lesson in lessonsForPeriod)
+                            {
+                                @:- @(Html.ActionLink(lesson.Name, "Get", "Teaching", new { teachingId = lesson.TeachingId }, new object { }))
+                                <text>, каб. @lesson.ClassroomName </text>
+                                <br />
+                            }
+                        </li>
+                    }
+                </ol>
+            </div>
+        }
+    </div>
 </div>
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |

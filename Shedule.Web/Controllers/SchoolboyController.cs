@@ -14,6 +14,7 @@ namespace Shedule.Web.Controllers
     /// <summary>
     /// The schoolboy controller.
     /// </summary>
+    [Authorize]
     public class SchoolboyController : Controller
     {
         /// <summary>
@@ -58,6 +59,10 @@ namespace Shedule.Web.Controllers
                     Age = schoolboy.Age,
                     FirstName = schoolboy.FirstName,
                     LastName = schoolboy.LastName,
+                    Adress = schoolboy.Adress,
+                    Birthday = schoolboy.Birthday,
+                    Email = schoolboy.Email,
+                    PhoneNumber = schoolboy.PhoneNumber,
                 };
 
                 foreach (var schoolboyToTariff in schoolboy.SchoolboyToTariffs)
@@ -99,7 +104,11 @@ namespace Shedule.Web.Controllers
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    Age = model.Age
+                    Age = model.Age,
+                    Email = model.Email,
+                    Birthday = model.Birthday,
+                    Adress = model.Adress,
+                    PhoneNumber = model.PhoneNumber,
                 };
                 businessContext.SchoolboyManager.Add(schoolboy);
             }

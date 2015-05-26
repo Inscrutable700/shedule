@@ -2,14 +2,15 @@
 @using Shedule.Data.Model
 
 @{
-    ViewBag.Title = "Classrooms";
+    ViewBag.Title = "Кабинеты";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<br />
 <p>
     @Html.ActionLink("Добавить кабинет", "Add", "Classroom")
 </p>
-
+<br />
 <table class="table">
     <tr>
         <th>
@@ -37,9 +38,11 @@
                 @Html.DisplayFor(modelItem => item.BuildingName)
             </td>
             <td>
-                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Просмотреть", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                @using (Html.BeginForm("Delete", "Classroom", FormMethod.Post))
+                {
+                    <input type="hidden" name="classroomId" value="@item.Id"/>
+                    <input type="submit" value="Удалить"/>
+                }
             </td>
         </tr>
     }

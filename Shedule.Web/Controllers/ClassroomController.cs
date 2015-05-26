@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Shedule.Web.Controllers
 {
+    [Authorize]
     public class ClassroomController : Controller
     {
         public ClassroomController()
@@ -46,6 +47,7 @@ namespace Shedule.Web.Controllers
         /// </summary>
         /// <param name="classroomId">The classroom identifier.</param>
         /// <returns></returns>
+        [HttpPost]
         public ActionResult Delete(int classroomId)
         {
             using (BusinessContext businessContext = new BusinessContext())
@@ -53,7 +55,7 @@ namespace Shedule.Web.Controllers
                 businessContext.ClassroomManager.Delete(classroomId);
             }
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         public ActionResult Add()
